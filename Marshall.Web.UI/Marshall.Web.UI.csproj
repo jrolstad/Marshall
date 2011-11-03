@@ -156,6 +156,7 @@
     <Content Include="Views\Home\ApplicationPool.cshtml" />
     <Content Include="Views\Home\CaConfig.cshtml" />
     <Content Include="Views\Home\SqlJob.cshtml" />
+    <Content Include="Views\Home\ApplicationEnvironment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

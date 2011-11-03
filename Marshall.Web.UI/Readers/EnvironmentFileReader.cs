@@ -70,7 +70,19 @@ namespace Marshall.Web.UI.Readers
 
         public IEnumerable<ApplicationEnvironmentViewModel> ReadApplicationEnvironments(XDocument environmentData)
         {
-            return null;
+            var applicationEnvironments = environmentData.Descendants("application")
+                    .Select(d => new ApplicationEnvironmentViewModel
+                    {
+                        ApplicationId = this.GetAttributeValue(d, "appID"),
+                        Name = this.GetAttributeValue(d, "name"),
+                        Type = this.GetAttributeValue(d,"type"),
+                        ConfigSection = this.GetElementValue(d, "configSection"),
+                        SqlBackupJob = this.GetElementValue(d, "sqlBackupJob")
+                    })
+                    .Where(j => j.Name != null)
+                    .ToArray();
+
+            return applicationEnvironments;
         }
 
         private IEnumerable<DatabaseRoleViewModel> GetDatabaseRoles(XElement database)

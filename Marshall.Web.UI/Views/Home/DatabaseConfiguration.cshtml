@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Marshall.Web.UI.Models.Environment.DatabaseConfigurationViewModel>
+
+
+<table>
+    <tr>
+        <th>
+            Server
+        </th>
+        <th>
+            Database
+        </th>
+        <th>
+            Name
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Server)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Database)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+    </tr>
+}
+
+</table>

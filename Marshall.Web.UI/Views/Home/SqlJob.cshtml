@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Marshall.Web.UI.Models.Environment.SqlJobViewModel>
+
+<table>
+    <tr>
+        <th>
+            Database
+        </th>
+        <th>
+            Name
+        </th>
+
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+         <td>
+            @Html.DisplayFor(modelItem => item.Database)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+       
+    </tr>
+}
+
+</table>

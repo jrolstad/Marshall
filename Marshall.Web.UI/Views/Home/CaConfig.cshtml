@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Marshall.Web.UI.Models.Environment.CaConfig>
+
+<table>
+    <tr>
+        <th>
+            Port
+        </th>
+        <th>
+            Server
+        </th>
+        <th>
+            User
+        </th>
+        <th>
+            Password
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Port)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Server)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+    </tr>
+}
+
+</table>

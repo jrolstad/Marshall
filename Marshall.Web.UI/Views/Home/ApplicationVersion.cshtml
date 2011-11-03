@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Marshall.Web.UI.Models.Version.ApplicationViewModel>
+
+<table>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Type
+        </th>
+        <th>
+            ProductCode
+        </th>
+        <th>
+            TeamCityProjectName
+        </th>
+        <th>
+            TeamCityBuildName
+        </th>
+        <th>
+            SpecifiedVersion
+        </th>
+        <th>
+            FileToInstall
+        </th>
+        <th>
+            ConfigFile
+        </th>
+        <th>
+            NetFrameworkVersion
+        </th>
+        <th>
+            WorkingDirectoryPrefix
+        </th>
+        <th>
+            SubversionPrefix
+        </th>
+        <th>
+            SubversionWorkingDirectoryPrefix
+        </th>
+        <th>
+            SubversionSpecifiedVersion
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeamCityProjectName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeamCityBuildName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SpecifiedVersion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FileToInstall)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConfigFile)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NetFrameworkVersion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WorkingDirectoryPrefix)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubversionPrefix)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubversionWorkingDirectoryPrefix)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubversionSpecifiedVersion)
+        </td>
+    </tr>
+}
+
+</table>

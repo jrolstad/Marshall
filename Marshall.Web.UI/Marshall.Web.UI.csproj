@@ -83,6 +83,8 @@
     <Compile Include="Models\Version\ApplicationViewModel.cs" />
     <Compile Include="Models\Version\PingTargetViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Readers\EnvironmentFileReader.cs" />
+    <Compile Include="Readers\VersionFileReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -149,6 +151,11 @@
     <Content Include="packages.config" />
     <None Include="readme.txt" />
     <Content Include="Views\Home\EnvironmentDetails.cshtml" />
+    <Content Include="Views\Home\DatabaseConfiguration.cshtml" />
+    <Content Include="Views\Home\ApplicationVersion.cshtml" />
+    <Content Include="Views\Home\ApplicationPool.cshtml" />
+    <Content Include="Views\Home\CaConfig.cshtml" />
+    <Content Include="Views\Home\SqlJob.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

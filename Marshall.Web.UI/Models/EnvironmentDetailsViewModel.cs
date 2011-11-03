@@ -8,6 +8,8 @@ namespace Marshall.Web.UI.Models
     {
         public IEnumerable<ApplicationViewModel> Applications { get; set; }
 
+        public IEnumerable<ApplicationEnvironmentViewModel> ApplicationEnvironments { get; set; }
+
         public IEnumerable<DatabaseConfigurationViewModel> Databases { get; set; }
 
         public IEnumerable<ApplicationPoolViewModel> ApplicationPools { get; set; }

@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Marshall.Web.UI.Models.Environment.ApplicationPoolViewModel>
+
+
+<table>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            ServiceAccount
+        </th>
+        <th>
+            Password
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ServiceAccount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+
+    </tr>
+}
+
+</table>

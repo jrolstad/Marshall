@@ -69,10 +69,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ApplicationServiceViewModel.cs" />
+    <Compile Include="Models\Environment\ApplicationEnvironmentViewModel.cs" />
+    <Compile Include="Models\Environment\ApplicationPoolViewModel.cs" />
+    <Compile Include="Models\Environment\CaConfig.cs" />
+    <Compile Include="Models\Environment\MessageQueueViewModel.cs" />
+    <Compile Include="Models\Environment\SqlJobViewModel.cs" />
+    <Compile Include="Models\Environment\TargetMachinePingTarget.cs" />
+    <Compile Include="Models\Environment\TargetMachineViewModel.cs" />
+    <Compile Include="Models\Version\ApplicationServiceViewModel.cs" />
+    <Compile Include="Models\Environment\DatabaseConfigurationViewModel.cs" />
+    <Compile Include="Models\Environment\DatabaseRoleViewModel.cs" />
     <Compile Include="Models\EnvironmentDetailsViewModel.cs" />
-    <Compile Include="Models\ApplicationViewModel.cs" />
-    <Compile Include="Models\PingTargetViewModel.cs" />
+    <Compile Include="Models\Version\ApplicationViewModel.cs" />
+    <Compile Include="Models\Version\PingTargetViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

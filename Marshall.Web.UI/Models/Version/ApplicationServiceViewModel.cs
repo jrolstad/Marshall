@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Marshall.Web.UI.Models
+﻿namespace Marshall.Web.UI.Models.Version
 {
     public class ApplicationServiceViewModel
     {

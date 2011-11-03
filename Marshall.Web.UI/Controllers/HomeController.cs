@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Xml.Linq;
 using Marshall.Web.UI.Models;
+using Marshall.Web.UI.Models.Environment;
+using Marshall.Web.UI.Models.Version;
 using Rolstad.Extensions;
 
 namespace Marshall.Web.UI.Controllers
@@ -45,16 +47,80 @@ namespace Marshall.Web.UI.Controllers
                             })
                     .OrderBy(a=>a.Name)
                     .ToArray();
-                
-                
-                var environmentData = XElement.Load(environmentFile.InputStream, LoadOptions.SetLineInfo);
 
-                return View(new EnvironmentDetailsViewModel{Applications = applications});
+                var environmentData = XElement.Load(environmentFile.InputStream, LoadOptions.SetLineInfo);
+                var databases = environmentData.Descendants("ppaConfig")
+                    .Select(d=>new DatabaseConfigurationViewModel
+                                   {
+                                       Server = GetElementValue(d,"server"),
+                                       Database = GetElementValue(d, "databaseName"),
+                                       Name = GetElementValue(d, "configSection"),
+                                       Roles = GetDatabaseRoles(d)
+                                   })
+                    .ToArray();
+
+                var applicationPools = environmentData.Descendants("applicationPools").Descendants("applicationPool")
+                  .Select(d => new ApplicationPoolViewModel
+                  {
+                      Name = this.GetAttributeValue(d, "name"),
+                      ServiceAccount = this.GetAttributeValue(d, "serviceAccount"),
+                      Password = this.GetAttributeValue(d, "password"),
+                  })
+                  .ToArray();
+
+                var caConfig = environmentData.Descendants("caConfig")
+                    .Select(c =>  new CaConfig
+                                      {
+                                          Port = GetElementValue(c, "Port"),
+                                          Server = GetElementValue(c, "CliServer"),
+                                          User = GetElementValue(c, "User"),
+                                          Password = GetElementValue(c, "EncryptedPassword")
+                                      })
+                    .FirstOrDefault();
+
+                var sqlJobs = environmentData.Descendants("sqlJobs").Descendants("sqlJob")
+                    .Select(d => new SqlJobViewModel
+                    {
+                        Database = GetElementValue(d, "configSection"),
+                        Name = GetElementValue(d, "name"),
+                    })
+                    .ToArray();
+
+                return View(new EnvironmentDetailsViewModel
+                                {
+                                    Applications = applications, 
+                                    Databases = databases, 
+                                    ApplicationPools = applicationPools,
+                                    CaConfig = caConfig,
+                                    SqlJobs = sqlJobs
+                                });
             }
             else
             {
                 return RedirectToAction("Index");
             }
+        }
+
+        private IEnumerable<DatabaseRoleViewModel> GetDatabaseRoles( XElement database )
+        {
+            var roleEntries = new List<DatabaseRoleViewModel>();
+
+            var roles = database.Descendants("role").ToArray();
+            if (roles.Count() == 0) return roleEntries;
+
+
+            roles.Each(s =>
+                {
+                    var role = new DatabaseRoleViewModel
+                    {
+                        Name = GetElementValue(s, "name"),
+                        ApplicationName = GetElementValue(s, "application"),
+                        Password = GetElementValue(s, "password")
+                    };
+                    roleEntries.Add(role);
+                });
+
+            return roleEntries;
         }
 
         private IEnumerable<PingTargetViewModel> GetPingTargets( XElement application )

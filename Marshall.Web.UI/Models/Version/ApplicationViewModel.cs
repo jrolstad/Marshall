@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Marshall.Web.UI.Models
+namespace Marshall.Web.UI.Models.Version
 {
     public class ApplicationViewModel
     {

@@ -1,0 +1,66 @@
+﻿@model Marshall.Web.UI.Models.EnvironmentDetailsViewModel
+
+@{
+    ViewBag.Title = "EnvironmentDetails";
+}
+
+<h2>EnvironmentDetails</h2>
+
+<table>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Type
+        </th>
+        <th>
+            Project Name
+        </th>
+        <th>
+            Build Name
+        </th>
+        <th>
+            Specified Version
+        </th>
+        <th>
+            Installation File
+        </th>
+        <th>
+            ConfigFile
+        </th>
+        <th>
+            .Net Framework Version
+        </th>
+    </tr>
+
+@foreach (var item in Model.Applications) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeamCityProjectName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeamCityBuildName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SpecifiedVersion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FileToInstall)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConfigFile)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NetFrameworkVersion)
+        </td>
+    </tr>
+}
+
+</table>

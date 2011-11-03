@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@using (Html.BeginForm("EnvironmentDetails", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.Label("Version File")
+    <input type="file" name="versionFile" />
+    @Html.Label("Environment File")
+    <input type="file" name="environmentFile" />
+    <input type="submit" value="Submit" />
+}

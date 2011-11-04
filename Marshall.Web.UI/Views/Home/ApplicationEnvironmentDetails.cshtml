@@ -29,6 +29,65 @@
                     <td style="font-style:italic">SqlBackupJob</td>
                     <td> @Html.DisplayFor(model => model.Environment.SqlBackupJob)</td>
                 </tr>
+                 @if ((Model.Environment.TargetMachines != null && Model.Environment.TargetMachines.Count() > 0))
+                {
+                     <tr>
+                    <td style="font-style:italic; vertical-align:top">Machines</td>
+                    <td>
+                        @foreach (var item in Model.Environment.TargetMachines)
+                        {
+                            @Html.DisplayFor(m=>item.MachineName)
+                            if(!string.IsNullOrWhiteSpace(item.Designation))
+                            {
+                                @Html.Label(string.Format(" ({0})",item.Designation))
+                            }
+                            <br/>
+                        }
+                    </td>
+                </tr>
+                }
+                @if ((Model.Environment.CaEvents != null && Model.Environment.CaEvents.Count() > 0))
+                {
+                     <tr>
+                    <td style="font-style:italic; vertical-align:top">CaEvents</td>
+                    <td>
+                        @foreach (var item in Model.Environment.CaEvents)
+                        {
+                            @Html.DisplayFor(m => item)
+                            <br/>
+                        }
+                    </td>
+                </tr>
+                }
+                @if ((Model.Environment.NantProperties != null && Model.Environment.NantProperties.Count() > 0))
+                {
+                     <tr>
+                    <td style="font-style:italic; vertical-align:top">NAnt Properties</td>
+                    <td>
+                        @foreach (var item in Model.Environment.NantProperties)
+                        {
+                            @Html.DisplayFor(m => item.Key)
+                            @Html.Raw(":&nbsp;")
+                            @Html.DisplayFor(m => item.Value)
+                            <br/>
+                        }
+                    </td>
+                </tr>
+                }
+                @if ((Model.Environment.NantTargets != null && Model.Environment.NantTargets.Count() > 0))
+                {
+                     <tr>
+                    <td style="font-style:italic; vertical-align:top">NAnt Targets</td>
+                    <td>
+                        @foreach (var item in Model.Environment.NantTargets)
+                        {
+                            @Html.DisplayFor(m => item)
+                            <br/>
+                        }
+                    </td>
+                </tr>
+                }
+               
             </table>
         }
     </fieldset>

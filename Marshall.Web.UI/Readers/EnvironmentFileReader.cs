@@ -78,12 +78,66 @@ namespace Marshall.Web.UI.Readers
                         Name = this.GetAttributeValue(d, "name"),
                         Type = this.GetAttributeValue(d,"type"),
                         ConfigSection = this.GetElementValue(d, "configSection"),
-                        SqlBackupJob = this.GetElementValue(d, "sqlBackupJob")
+                        SqlBackupJob = this.GetElementValue(d, "sqlBackupJob"),
+                        TargetMachines = this.GetTargetMachines(d),
+                        CaEvents = this.GetCaEvents(d),
+                        NantProperties = this.GetNantProperties(d),
+                        NantTargets = this.GetNantTargets(d),
+                        Queues = this.GetQueues(d)
                     })
                     .Where(j => j.Name != null)
+                    .OrderBy(j=>j.Name)
                     .ToArray();
 
             return applicationEnvironments;
+        }
+
+        private IEnumerable<TargetMachineViewModel> GetTargetMachines( XElement xElement)
+        {
+            return xElement.Descendants("targetMachines").Descendants("targetMachine")
+                .Select(m => new TargetMachineViewModel
+                                 {
+                                     MachineName = this.GetElementValue(m, "machineName"),
+                                     VirtualDirectory = this.GetElementValue(m, "virtualDirectory"),
+                                     Designation = this.GetElementValue(m, "designation")
+                                 })
+                .ToArray();
+        }
+
+        private IEnumerable<string> GetCaEvents( XElement xElement)
+        {
+            return xElement.Descendants("caEvents").Descendants("caEvent")
+                .Select(t => t.Value)
+                .ToArray();
+        }
+
+        private Dictionary<string, string> GetNantProperties( XElement xElement)
+        {
+            return xElement.Descendants("nant").Descendants("Properties").Descendants("Property")
+                .Select(t => new { Name = this.GetAttributeValue(t, "name"), Value = this.GetAttributeValue(t, "value") })
+                .ToDictionaryExplicit(k=>k.Name,v=>v.Value);
+        }
+
+        private IEnumerable<string> GetNantTargets( XElement xElement )
+        {
+            return xElement.Descendants("nant").Descendants("Targets").Descendants("Target")
+                 .Select(t=>t.Value)
+                 .ToArray();
+        }
+
+        private IEnumerable<MessageQueueViewModel> GetQueues( XElement xElement)
+        {
+            return xElement.Descendants("queue")
+                .Select(q => new MessageQueueViewModel
+                                 {
+                                     Id = this.GetAttributeValue(q,"id"),
+                                     Description = this.GetAttributeValue(q, "description"),
+                                     Name = this.GetAttributeValue(q, "name"),
+                                     Path = this.GetAttributeValue(q, "path"),
+                                     Type = this.GetAttributeValue(q, "type")
+
+                                 })
+                .ToArray();
         }
 
         private IEnumerable<DatabaseRoleViewModel> GetDatabaseRoles(XElement database)

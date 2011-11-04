@@ -6,28 +6,18 @@
             Name
         </th>
         <th>
-            Type
-        </th>
-        <th>
-            Project Name
-        </th>
-        <th>
             Build Name
         <th>
             Specified Version
         </th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
+    var applicationDetailsRowName = Guid.NewGuid().ToString();
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Type)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TeamCityProjectName)
+             <a href="#" id="button" onclick="$('#@applicationDetailsRowName').toggle({effect:'fade'});"> @Html.DisplayFor(modelItem => item.Name)</a>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.TeamCityBuildName)
@@ -36,6 +26,12 @@
             @Html.DisplayFor(modelItem => item.SpecifiedVersion)
         </td>
     </tr>
+    <tr id="@applicationDetailsRowName">
+        <td colspan="3">
+        @Html.Partial("ApplicationDetails",item)
+        </td>
+    </tr>
+     <script>$('#@applicationDetailsRowName').toggle();</script>
 }
 
 </table>

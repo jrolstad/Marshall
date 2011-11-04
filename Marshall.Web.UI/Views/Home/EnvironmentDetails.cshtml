@@ -4,20 +4,40 @@
     ViewBag.Title = "EnvironmentDetails";
 }
 
-<h2>Applications</h2>
-@Html.Partial("ApplicationVersion",@Model.Applications)
+<div id="accordion">
+    <h2><a href="#">Applications</a></h2>
+	<div>
+        @Html.Partial("ApplicationVersion",@Model.Applications)
+    </div>
 
-<h2>Environments</h2>
-@Html.Partial("ApplicationEnvironment",@Model.ApplicationEnvironments)
+    <h2><a href="#">Environments</a></h2>
+	<div>
+        @Html.Partial("ApplicationEnvironment",@Model.ApplicationEnvironments)
+    </div>
 
-<h2>Databases</h2>
-@Html.Partial("DatabaseConfiguration",@Model.Databases)
+     <h2><a href="#">Databases</a></h2>
+	<div>
+        @Html.Partial("DatabaseConfiguration",@Model.Databases)
+    </div>
 
-<h2>Application Pools</h2>
-@Html.Partial("ApplicationPool",@Model.ApplicationPools)
+    <h2><a href="#">Application Pools</a></h2>
+	<div>
+        @Html.Partial("ApplicationPool",@Model.ApplicationPools)
+    </div>
 
-<h2>Ca Config</h2>
-@Html.Partial("CaConfig",new[]{@Model.CaConfig})
+    <h2><a href="#">CA Config</a></h2>
+    <div>
+        @Html.Partial("CaConfig",new[]{@Model.CaConfig})
+    </div>
 
-<h2>Sql Job</h2>
-@Html.Partial("SqlJob",@Model.SqlJobs)
+    <h2><a href="#">Sql Jobs</a></h2>
+    <div>
+        @Html.Partial("SqlJob",@Model.SqlJobs)
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#accordion").accordion({ collapsible: true, autoHeight:false });
+    });
+</script>

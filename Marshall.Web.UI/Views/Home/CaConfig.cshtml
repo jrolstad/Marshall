@@ -16,7 +16,9 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
+    var passwordDivName = "caPasswordDiv";
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Port)
@@ -28,7 +30,9 @@
             @Html.DisplayFor(modelItem => item.User)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Password)
+            <a href="#" id="button" onclick="$('#@passwordDivName').toggle({effect:'fade'});">Show</a>
+            <div id="@passwordDivName">@Html.DisplayFor(modelItem => item.Password)</div>
+            <script> $('#@passwordDivName').toggle();</script>
         </td>
     </tr>
 }

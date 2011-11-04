@@ -9,37 +9,12 @@
             Type
         </th>
         <th>
-            ProductCode
+            Project Name
         </th>
         <th>
-            TeamCityProjectName
-        </th>
+            Build Name
         <th>
-            TeamCityBuildName
-        </th>
-        <th>
-            SpecifiedVersion
-        </th>
-        <th>
-            FileToInstall
-        </th>
-        <th>
-            ConfigFile
-        </th>
-        <th>
-            NetFrameworkVersion
-        </th>
-        <th>
-            WorkingDirectoryPrefix
-        </th>
-        <th>
-            SubversionPrefix
-        </th>
-        <th>
-            SubversionWorkingDirectoryPrefix
-        </th>
-        <th>
-            SubversionSpecifiedVersion
+            Specified Version
         </th>
     </tr>
 
@@ -52,9 +27,6 @@
             @Html.DisplayFor(modelItem => item.Type)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ProductCode)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.TeamCityProjectName)
         </td>
         <td>
@@ -62,27 +34,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.SpecifiedVersion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FileToInstall)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ConfigFile)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NetFrameworkVersion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WorkingDirectoryPrefix)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SubversionPrefix)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SubversionWorkingDirectoryPrefix)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SubversionSpecifiedVersion)
         </td>
     </tr>
 }

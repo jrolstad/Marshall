@@ -14,7 +14,10 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
+
+@foreach (var item in Model)
+{
+    var passwordDivName = "applicationPoolPassword_" + item.Name;
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
@@ -23,10 +26,14 @@
             @Html.DisplayFor(modelItem => item.ServiceAccount)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Password)
+            <a href="#" id="button" onclick="$('#@passwordDivName').toggle({effect:'fade'});">Show</a><br/>
+            <div id="@passwordDivName">@Html.DisplayFor(modelItem => item.Password)</div>
+            <script>$('#@passwordDivName').toggle();</script>
         </td>
 
+
     </tr>
+   
 }
 
 </table>

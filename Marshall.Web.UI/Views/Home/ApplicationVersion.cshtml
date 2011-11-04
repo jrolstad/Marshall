@@ -28,7 +28,16 @@
     </tr>
     <tr id="@applicationDetailsRowName">
         <td colspan="3">
-        @Html.Partial("ApplicationDetails",item)
+        <table>
+            <tr>
+                <td valign="top">
+                @Html.Partial("ApplicationDetails",item)
+                </td>
+                <td valign="top">
+                @Html.Partial("ApplicationEnvironmentDetails",item)
+                </td>
+        </tr>
+        </table>
         </td>
     </tr>
      <script>$('#@applicationDetailsRowName').toggle();</script>

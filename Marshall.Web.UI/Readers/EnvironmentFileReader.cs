@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Xml.Linq;
 using Marshall.Web.UI.Models.Environment;
+using Marshall.Web.UI.Models.Version;
 using Rolstad.Extensions;
 
 namespace Marshall.Web.UI.Readers
@@ -68,7 +69,7 @@ namespace Marshall.Web.UI.Readers
             return sqlJobs;
         }
 
-        public IEnumerable<ApplicationEnvironmentViewModel> ReadApplicationEnvironments(XDocument environmentData)
+        public IEnumerable<ApplicationEnvironmentViewModel> ReadApplicationEnvironments( XDocument environmentData)
         {
             var applicationEnvironments = environmentData.Descendants("application")
                     .Select(d => new ApplicationEnvironmentViewModel

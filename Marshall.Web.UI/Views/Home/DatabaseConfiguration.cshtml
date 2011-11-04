@@ -15,9 +15,10 @@
     </tr>
 
 @foreach (var item in Model) {
+    var databaseRolesRowName = Guid.NewGuid().ToString();
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+             <a href="#" id="button" onclick="$('#@databaseRolesRowName').toggle({effect:'fade'});"> @Html.DisplayFor(modelItem => item.Name)</a>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Server)
@@ -26,6 +27,37 @@
             @Html.DisplayFor(modelItem => item.Database)
         </td>
     </tr>
+    <tr id="@databaseRolesRowName">
+        <td colspan="3">
+            <fieldset>
+                 <legend>Application Roles</legend>
+                @if (item.Roles == null || item.Roles.Count() == 0)
+                {
+                    @Html.Label("No Application roles for the database")
+                }
+                else
+                {
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <th>ApplicationName</th>
+                            <th>Password</th>
+                        </tr>
+                        @foreach (var role in item.Roles)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(r => role.Name)</td>
+                                <td>@Html.DisplayFor(r => role.ApplicationName)</td>
+                                <td>@Html.DisplayFor(r => role.Password)</td>
+                            </tr>
+
+                        }
+                    </table>
+                }
+            </fieldset>
+        </td>
+    </tr>
+     <script>$('#@databaseRolesRowName').toggle();</script>
 }
 
 </table>

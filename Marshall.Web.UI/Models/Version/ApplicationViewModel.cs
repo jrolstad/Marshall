@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Marshall.Web.UI.Models.Environment;
 
 namespace Marshall.Web.UI.Models.Version
 {
@@ -21,6 +22,8 @@ namespace Marshall.Web.UI.Models.Version
 
         public IEnumerable<ApplicationServiceViewModel> ServiceEntries { get; set; }
 
-        public IEnumerable<PingTargetViewModel> PingTargets { get; set; } 
+        public IEnumerable<PingTargetViewModel> PingTargets { get; set; }
+
+        public ApplicationEnvironmentViewModel Environment { get; set; }
     }
 }

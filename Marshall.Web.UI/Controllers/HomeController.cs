@@ -1,8 +1,12 @@
-﻿using System.Web;
+﻿using System.Collections.Generic;
+using System.Web;
 using System.Web.Mvc;
 using System.Xml.Linq;
 using Marshall.Web.UI.Models;
+using Marshall.Web.UI.Models.Environment;
+using Marshall.Web.UI.Models.Version;
 using Marshall.Web.UI.Readers;
+using Rolstad.Extensions;
 
 namespace Marshall.Web.UI.Controllers
 {
@@ -31,6 +35,8 @@ namespace Marshall.Web.UI.Controllers
                 var sqlJobs = _environmentFileReader.ReadSqlJobs(environmentData);
                 var applicationEnvironments = _environmentFileReader.ReadApplicationEnvironments(environmentData);
 
+                CombineApplicationsAndEnvironments(applications, applicationEnvironments);
+
                 return View(new EnvironmentDetailsViewModel
                                 {
                                     Applications = applications, 
@@ -47,5 +53,17 @@ namespace Marshall.Web.UI.Controllers
             }
         }
 
+        private void CombineApplicationsAndEnvironments( IEnumerable<ApplicationViewModel> applications, IEnumerable<ApplicationEnvironmentViewModel> applicationEnvironments )
+        {
+            var environmentDictionary = applicationEnvironments.ToDictionaryExplicit(e => e.Name);
+
+            applications.Each(a =>
+                                  {
+                                      if(environmentDictionary.ContainsKey(a.Name))
+                                      {
+                                          a.Environment = environmentDictionary[a.Name];
+                                      }
+                                  });
+        }
     }
 }

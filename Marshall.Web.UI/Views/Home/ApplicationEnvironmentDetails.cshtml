@@ -1,0 +1,35 @@
+﻿@model Marshall.Web.UI.Models.Version.ApplicationViewModel
+
+<fieldset>
+        <legend>Environment</legend>
+        @if (Model.Environment == null)
+        {
+            @Html.Display("No Environment defined")
+        }
+        else
+        {
+             <table>
+                <tr>
+                    <td style="font-style:italic">Name</td>
+                    <td> @Html.DisplayFor(model => model.Environment.Name)</td>
+                </tr>
+                <tr>
+                    <td style="font-style:italic">ApplicationId</td>
+                    <td> @Html.DisplayFor(model => model.Environment.ApplicationId)</td>
+                </tr>
+                <tr>
+                    <td style="font-style:italic">Type</td>
+                    <td> @Html.DisplayFor(model => model.Environment.Type)</td>
+                </tr>
+                <tr>
+                    <td style="font-style:italic">ConfigSection</td>
+                    <td> @Html.DisplayFor(model => model.Environment.ConfigSection)</td>
+                </tr>
+                 <tr>
+                    <td style="font-style:italic">SqlBackupJob</td>
+                    <td> @Html.DisplayFor(model => model.Environment.SqlBackupJob)</td>
+                </tr>
+            </table>
+        }
+    </fieldset>
+

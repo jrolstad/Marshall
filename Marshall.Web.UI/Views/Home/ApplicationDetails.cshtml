@@ -56,5 +56,55 @@
             <td style="font-style:italic">SVN Specified Version</td>
             <td> @Html.DisplayFor(model => model.SubversionSpecifiedVersion)</td>
         </tr>
+        @if ((Model.ServiceEntries != null && Model.ServiceEntries.Count() > 0))
+        {
+            var serviceTableName = Guid.NewGuid().ToString();
+            <tr>
+                <td colspan="2"> 
+                    <a href="#" id="button" onclick="$('#@serviceTableName').toggle({effect:'fade'});"> Service Entries</a>
+                    <table id="@serviceTableName">
+                        <tr>
+                            <th>Contract</th>
+                            <th>Service</th>
+                            <th>Binding</th>
+                        </tr>
+                        @foreach (var service in Model.ServiceEntries)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(m => service.Contract)</td>
+                                <td>@Html.DisplayFor(m => service.ServiceFile)</td>
+                                <td>@Html.DisplayFor(m => service.Binding)</td>
+                            </tr>
+                        }
+                    </table>
+                     <script>$('#@serviceTableName').toggle();</script>
+                </td>
+            </tr>
+        }
+        @if ((Model.PingTargets != null && Model.PingTargets.Count() > 0))
+        {
+            var pingTargetTableName = Guid.NewGuid().ToString();
+            <tr>
+                <td colspan="2"> 
+                    <a href="#" onclick="$('#@pingTargetTableName').toggle({effect:'fade'});">Ping Targets</a>
+                    <table id="@pingTargetTableName">
+                        <tr>
+                            <th>Name</th>
+                            <th>Service</th>
+                            <th>Url Suffix</th>
+                        </tr>
+                        @foreach (var target in Model.PingTargets)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(m => target.Name)</td>
+                                <td>@Html.DisplayFor(m => target.ServiceFile)</td>
+                                <td>@Html.DisplayFor(m => target.urlSuffix)</td>
+                            </tr>
+                        }
+                    </table>
+                     <script>$('#@pingTargetTableName').toggle();</script>
+                </td>
+            </tr>
+        }
     </table>
 </fieldset>

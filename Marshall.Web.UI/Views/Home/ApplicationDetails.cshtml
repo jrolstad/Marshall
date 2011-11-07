@@ -61,7 +61,7 @@
             var serviceTableName = Guid.NewGuid().ToString();
             <tr>
                 <td colspan="2"> 
-                    <a href="#" id="button" onclick="$('#@serviceTableName').toggle({effect:'fade'});"> Service Entries</a>
+                    <a style="text-decoration: underline;" id="button" onclick="$('#@serviceTableName').toggle({effect:'fade'});"> Service Entries</a>
                     <table id="@serviceTableName">
                         <tr>
                             <th>Contract</th>
@@ -86,7 +86,7 @@
             var pingTargetTableName = Guid.NewGuid().ToString();
             <tr>
                 <td colspan="2"> 
-                    <a href="#" onclick="$('#@pingTargetTableName').toggle({effect:'fade'});">Ping Targets</a>
+                    <a style="text-decoration: underline;" onclick="$('#@pingTargetTableName').toggle({effect:'fade'});">Ping Targets</a>
                     <table id="@pingTargetTableName">
                         <tr>
                             <th>Name</th>

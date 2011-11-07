@@ -1,0 +1,98 @@
+﻿@model Marshall.Web.UI.Models.Environment.TargetMachineViewModel
+
+<fieldset>
+    <legend>@Html.DisplayFor(model => model.MachineName)</legend>
+    
+    <table>
+        <tr>
+            <td style="font-style:italic">Designation</td>
+            <td>@Html.DisplayFor(model => model.Designation)</td>
+        </tr>
+        <tr>
+            <td style="font-style:italic">Physical Directory</td>
+            <td>@Html.DisplayFor(model => model.PhysicalDirectory)</td>
+        </tr>
+        <tr>
+            <td style="font-style:italic">Virtual Directory</td>
+            <td>@Html.DisplayFor(model => model.VirtualDirectory)</td>
+        </tr>
+        <tr>
+            <td style="font-style:italic">Application Pool</td>
+            <td>@Html.DisplayFor(model => model.ApplicationPool)</td>
+        </tr>
+        <tr>
+            <td style="font-style:italic">Authentication Type</td>
+            <td>@Html.DisplayFor(model => model.AuthenticationType)</td>
+        </tr>
+        <tr>
+            <td style="font-style:italic">Authentication Mode</td>
+            <td>@Html.DisplayFor(model => model.AuthenticationMode)</td>
+        </tr>
+        <tr>
+            <td style="font-style:italic">Service Account</td>
+            <td>@Html.DisplayFor(model => model.ServiceAccount)</td>
+        </tr>
+        <tr>
+            <td style="font-style:italic">Anonymous User</td>
+            <td>@Html.DisplayFor(model => model.AnonymousUserAccount)</td>
+        </tr>
+        <tr>            
+            <td style="font-style:italic">Config File</td>
+            <td>@Html.DisplayFor(model => model.ConfigFileName)</td>
+        </tr>
+        <tr>
+            <td style="font-style:italic">Config File Action</td>
+            <td>@Html.DisplayFor(model => model.ConfigFileAction)</td>
+        </tr>
+        <tr>
+            <td style="font-style:italic">Dns Alias</td>
+            <td>@Html.DisplayFor(model => model.DnsAlias)</td>
+        </tr>
+        <tr>
+            <td style="font-style:italic">Service Name</td>
+            <td>@Html.DisplayFor(model => model.ServiceName)</td>
+        </tr>
+        <tr>
+            <td style="font-style:italic">Extenal Directories</td>
+            <td>
+                @foreach (var directory in Model.ExtenalDirectories)
+                {
+                    @Html.LabelFor(model => directory)
+                    <br />
+                }
+            </td>
+        </tr>
+        <tr>
+            <td style="font-style:italic">Ping Targets</td>
+            <td>
+                @foreach (var item in Model.PingTargets)
+                {
+                    @Html.DisplayFor(model => item.Service)
+                    @Html.Label(": ")
+                    @Html.DisplayFor(model => item.Target)
+                    <br />
+                }
+            </td>
+        </tr>
+        <tr>
+            <td style="font-style:italic">Directory Stub</td>
+            <td>@Html.DisplayFor(model => model.DirectoryStub)</td>
+        </tr>
+        <tr>
+            <td style="font-style:italic">Executable</td>
+            <td>@Html.DisplayFor(model => model.ApplicationExe)</td>
+        </tr>
+        <tr>
+            <td style="font-style:italic">Website</td>
+            <td>@Html.DisplayFor(model => model.Website)</td>
+        </tr>
+        <tr>
+            <td style="font-style:italic">Service Startup Type</td>
+            <td>@Html.DisplayFor(model => model.ServiceStartupType)</td>
+        </tr>
+        <tr>
+            <td style="font-style:italic">Install for Everyone</td>
+            <td>@Html.DisplayFor(model => model.InstallForEveryone)</td>
+        </tr>
+    </table>
+</fieldset>

@@ -157,6 +157,7 @@
     <Content Include="Views\Home\ApplicationEnvironment.cshtml" />
     <Content Include="Views\Home\ApplicationDetails.cshtml" />
     <Content Include="Views\Home\ApplicationEnvironmentDetails.cshtml" />
+    <Content Include="Views\Home\TargetMachineDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

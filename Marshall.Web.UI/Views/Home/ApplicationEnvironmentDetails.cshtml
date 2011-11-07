@@ -36,12 +36,19 @@
                     <td>
                         @foreach (var item in Model.Environment.TargetMachines)
                         {
-                            @Html.DisplayFor(m=>item.MachineName)
-                            if(!string.IsNullOrWhiteSpace(item.Designation))
-                            {
-                                @Html.Label(string.Format(" ({0})",item.Designation))
-                            }
+                            var targetMachineDetailsId = Guid.NewGuid().ToString();
+                            <a style="text-decoration: underline" id="button" onclick="$('#@targetMachineDetailsId').toggle({effect:'fade'});">
+                                @Html.DisplayFor(m => item.MachineName)
+                                @if (!string.IsNullOrWhiteSpace(item.Designation))
+                                {
+                                    @Html.Label(string.Format(" ({0})", item.Designation))
+                                }
+                            </a>
                             <br/>
+                            <div id="@targetMachineDetailsId">
+                            @Html.Partial("TargetMachineDetails", item)
+                            </div>
+                            <script>$('#@targetMachineDetailsId').toggle();</script>
                         }
                     </td>
                 </tr>

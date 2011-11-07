@@ -17,7 +17,7 @@
     var applicationDetailsRowName = Guid.NewGuid().ToString();
     <tr>
         <td>
-             <a href="#" id="button" onclick="$('#@applicationDetailsRowName').toggle({effect:'fade'});"> @Html.DisplayFor(modelItem => item.Name)</a>
+             <a style="text-decoration: underline" id="button" onclick="$('#@applicationDetailsRowName').toggle({effect:'fade'});"> @Html.DisplayFor(modelItem => item.Name)</a>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.TeamCityBuildName)
@@ -30,10 +30,10 @@
         <td colspan="3">
         <table>
             <tr>
-                <td valign="top">
+                <td style="vertical-align: top">
                 @Html.Partial("ApplicationDetails",item)
                 </td>
-                <td valign="top">
+                <td style="vertical-align: top">
                 @Html.Partial("ApplicationEnvironmentDetails",item)
                 </td>
         </tr>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Xml;
 using System.Xml.Linq;
 using Marshall.Web.UI.Models.Environment;
 using Marshall.Web.UI.Models.Version;
@@ -99,8 +100,46 @@ namespace Marshall.Web.UI.Readers
                                  {
                                      MachineName = this.GetElementValue(m, "machineName"),
                                      VirtualDirectory = this.GetElementValue(m, "virtualDirectory"),
-                                     Designation = this.GetElementValue(m, "designation")
+                                     Designation = this.GetElementValue(m, "designation"),
+                                     DnsAlias = this.GetElementValue(m, "dnsAlias"),
+                                     ServiceName = this.GetElementValue(m, "serviceName"),
+                                     ServiceAccount = this.GetElementValue(m, "serviceAccount"),
+                                     Password = this.GetElementValue(m, "password"),
+                                     PhysicalDirectory = this.GetElementValue(m, "physicalDirectory"),
+                                     DirectoryStub = this.GetElementValue(m, "DirectoryStub"),
+                                     ApplicationExe = this.GetElementValue(m, "ApplicationExe"),
+                                     ExtenalDirectories = this.GetExternalDirectories(m),
+                                     PingTargets = this.GetPingTargets(m),
+                                     Website = this.GetElementValue(m, "website"),
+                                     ApplicationPool = this.GetElementValue(m, "applicationPool"),
+                                     AuthenticationType = this.GetElementValue(m, "authenticationType"),
+                                     MagnetoType = this.GetElementValue(m, "magnetoType"),
+                                     AuthenticationMode = this.GetElementValue(m, "authenticationMode"),
+                                     AnonymousUserAccount = this.GetElementValue(m, "anonymousUser", "account"),
+                                     AnonymousUserPassword = this.GetElementValue(m, "anonymousUser", "password"),
+                                     ConfigFileAction = this.GetElementValue(m, "configFileAction"),
+                                     ConfigFileName = this.GetElementValue(m, "configFileName"),
+                                     ServiceStartupType = this.GetElementValue(m, "serviceStartupType"),
+                                     InstallForEveryone = this.GetElementValue(m, "installForEveryone")
                                  })
+                .ToArray();
+        }
+
+        private IEnumerable<TargetMachinePingTarget> GetPingTargets( XElement xElement   )
+        {
+            return xElement.Descendants("pingTargets").Descendants("pingTarget")
+                .Select(x => new TargetMachinePingTarget
+                                 {
+                                     Service = this.GetAttributeValue(x,"service"),
+                                     Target = this.GetAttributeValue(x,"target")
+                                 })
+                .ToArray();
+        }
+
+        private IEnumerable<string> GetExternalDirectories(XElement xElement)
+        {
+            return xElement.Descendants("externalDirectories").Descendants("externalDirectory")
+                .Select(e => e.Value)
                 .ToArray();
         }
 
